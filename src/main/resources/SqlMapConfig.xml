@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--此处有个dtd约束是mybatis-3-config.dtd。并且这个全局配置文件名字是不固定的-->
+<configuration>
+    <!--这部分是引入一个jdbc文件，里面讲数据库连接四个参数封装起来了，下面通过${}获取对应的参数
+    jdbc.properties文件可以不用建也行，直接将四个参数注入value中-->
+    <properties resource="jdbc.properties"/>
+    <!--typeAliases是为了减少类名的长度来设置的。-->
+    <typeAliases>
+        <typeAlias type="com.fz.mybatis.daoDo.UserDo" alias="UserDo"/>
+        <!--别名 类名 或者 类名首字母小写 UserDo 或者 userDo 推荐使用 -->
+        <!-- <typeAlias type="com.fz.mybatis.daoEntify.User" alias="UserDo"/>-->
+        <!--当要起别名的文件过多时，所有的实体类在一个包下时，可以通过下面的方式添加，其别名就是相应的类名
+        -->
+        <!--<package name="com.fz.mybatis.daoEntify"/>-->
+    </typeAliases>
+    <!-- 和spring整合后 environments标签中配置将废除-->
+    <environments default="development">
+        <environment id="development">
+            <!-- 使用jdbc事务管理和数据库连接池POOLED，控制都由mybatis控制，后面经过Spring框架整合后将交由第三方数据库连接池控制（c3p0）-->
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <!--url中最后一个配置allowMultiQueries=true意思是-->
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--加载Sqlmap文件夹中的映射文件（写sql代码的地方）-->
+    <mappers>
+        <mapper resource="mapper/UserMapper.xml"/>
+    </mappers>
+</configuration>
