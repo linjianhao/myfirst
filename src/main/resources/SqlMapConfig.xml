@@ -9,29 +9,24 @@
     <properties resource="jdbc.properties"/>
     <!--typeAliases是为了减少类名的长度来设置的。-->
     <typeAliases>
-        <typeAlias type="com.fz.mybatis.daoDo.UserDo" alias="UserDo"/>
         <!--别名 类名 或者 类名首字母小写 UserDo 或者 userDo 推荐使用 -->
         <!-- <typeAlias type="com.fz.mybatis.daoEntify.User" alias="UserDo"/>-->
-        <!--当要起别名的文件过多时，所有的实体类在一个包下时，可以通过下面的方式添加，其别名就是相应的类名
-        -->
-        <!--<package name="com.fz.mybatis.daoEntify"/>-->
+        <!--当要起别名的文件过多时，所有的实体类在一个包下时，可以通过下面的方式添加，其别名就是相应的类名-->
+        <package name="com.fz.mybatis.daoDo"/>
     </typeAliases>
-    <!-- 和spring整合后 environments标签中配置将废除-->
     <environments default="development">
         <environment id="development">
-            <!-- 使用jdbc事务管理和数据库连接池POOLED，控制都由mybatis控制，后面经过Spring框架整合后将交由第三方数据库连接池控制（c3p0）-->
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="${driver}"/>
-                <!--url中最后一个配置allowMultiQueries=true意思是-->
                 <property name="url" value="${url}"/>
                 <property name="username" value="${username}"/>
                 <property name="password" value="${password}"/>
             </dataSource>
         </environment>
     </environments>
-    <!--加载Sqlmap文件夹中的映射文件（写sql代码的地方）-->
     <mappers>
-        <mapper resource="mapper/UserMapper.xml"/>
+        <!--<mapper resource="mapper/UserMapper.xml"/>-->
+        <mapper resource="mapper1/UserMapper.xml"/>
     </mappers>
 </configuration>

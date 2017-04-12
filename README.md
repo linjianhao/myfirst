@@ -8,4 +8,6 @@ http://www.cnblogs.com/bluestorm/p/3634348.html
 http://www.mybatis.org/mybatis-3/zh/getting-started.html
 
 数据库使用 Mysql
-版本 tag  v1.0
+版本 tag
+1. tag1 ：搭建环境并测试 ,单表的CRUD操作，使用xml配置方式 tag-name = v1.0
+2: tag2 :使用Mapper接口方式，完成单表CRUD操作 tag-name = v1.1

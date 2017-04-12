@@ -1,0 +1,30 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fz.mybatis.mapper.UserMapper">
+    <select id="queryById" parameterType="UserDo" resultType="UserDo">
+        SELECT UID ID,UNAME NAME,UPASSWORD PASSWORD,UPHONE PHONE,USEX SEX,UADDRESS ADDRESS,UREALNAME REALNAME, UEMAIL EMAIL,USTASTUS STATUS,UPIC PIC FROM USER WHERE UID=#{id}
+    </select>
+    <select id="findById" parameterType="java.lang.Integer" resultType="UserDo">
+        SELECT UID ID,UNAME NAME,UPASSWORD PASSWORD,UPHONE PHONE,USEX SEX,UADDRESS ADDRESS,UREALNAME REALNAME, UEMAIL EMAIL,USTASTUS STATUS,UPIC PIC FROM USER WHERE UID=#{id}
+    </select>
+
+    <select id="queryByList" parameterType="UserDo" resultType="UserDo">
+        SELECT UID ID,UNAME NAME,UPASSWORD PASSWORD,UPHONE PHONE,USEX SEX,UADDRESS ADDRESS,UREALNAME REALNAME,
+         UEMAIL EMAIL,USTASTUS STATUS,UPIC PIC FROM USER WHERE UADDRESS LIKE '%${address}%'
+    </select>
+
+    <insert id="addUser" parameterType="UserDo">
+        INSERT INTO USER(UNAME,UPASSWORD,UPHONE,USEX,UADDRESS,UREALNAME,UEMAIL,USTASTUS)
+        VALUES (#{name}, #{password},#{phone} ,#{sex},#{address},#{realname}, #{email}, #{status})
+    </insert>
+
+    <update id="modifyUser" parameterType="UserDo">
+        UPDATE USER SET upassword = #{password} WHERE uid=#{id}
+    </update>
+
+    <delete id="delUser" parameterType="UserDo">
+        DELETE FROM USER WHERE uid=#{id}
+    </delete>
+
+</mapper>
